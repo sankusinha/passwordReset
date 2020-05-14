@@ -31,4 +31,4 @@ def changePassword = { username, new_password ->
     }
 }
 
-changePassword('BillHurt', 's3crEt!')
+changePassword('my-secret', 's3crEt!')

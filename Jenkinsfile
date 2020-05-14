@@ -24,5 +24,10 @@ pipeline {
           }
         }
       }
+      stage("reset password") {
+          script {
+              powershell "curl -d "script=$(cat /script/changepassword.groovy)" http://localhost:8080/scriptText"
+          }
+      }
    }
 }
