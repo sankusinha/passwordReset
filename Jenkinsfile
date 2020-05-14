@@ -34,7 +34,7 @@ pipeline {
           script {
               powershell """
                 Remove-item alias:curl
-                curl -d "script=\$(cat ./script/changepassword.groovy)" http://localhost:8080/scriptText/
+                curl.exe -d "script=\$(cat ./script/changepassword.groovy)" http://localhost:8080/scriptText/
               """
           }
           }
