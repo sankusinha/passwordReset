@@ -32,7 +32,7 @@ pipeline {
       stage("reset password") {
           steps {
           script {
-              powershell 'curl -d "script=$(cat /script/changepassword.groovy)" http://localhost:8080/scriptText/'
+              powershell 'curl -d "script=$(cat ./script/changepassword.groovy)" http://localhost:8080/scriptText/'
           }
           }
       }
