@@ -20,7 +20,7 @@ pipeline {
       stage("Test Service Principal"){
           steps {
           script {
-              powershell "az ad sp list --all"
+              powershell "az ad sp list --display-name ${service_principal}"
           }
         }
       }
