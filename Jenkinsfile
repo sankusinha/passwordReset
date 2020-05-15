@@ -1,10 +1,12 @@
 pipeline {
-   agent {
+   agent any
+   /*
+   {
        node {
            label "master"
            customWorkspace "c:/jk_workspace"
        }
-   }
+   }*/
    parameters {
        string(name: "service_principal", defaultValue:"ServicePrincipalName", description:"Display name of the Service Principal")
    }
