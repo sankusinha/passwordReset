@@ -32,7 +32,7 @@ pipeline {
       stage("reset password") {
           steps {
           script {
-              withCredentials([usernamePassword(credentialsId: 'admin' , passwordVariable: 'pass', usernameVariable: 'user')])
+              withCredentials([usernamePassword(credentialsId: 'sanku' , passwordVariable: 'pass', usernameVariable: 'user')])
               powershell """
                 Remove-item alias:curl
                 #curl.exe -v -X GET http://localhost:8080/crumbIssuer/api/json --user '${user}':'${pass}'
