@@ -34,8 +34,6 @@ pipeline {
           script {
               withCredentials([usernamePassword(credentialsId: 'admin' , passwordVariable: 'pass', usernameVariable: 'user')])
               powershell """
-                Remove-item alias:curl
-                #curl.exe -v -X GET http://localhost:8080/crumbIssuer/api/json --user '${user}':'${pass}'
                 curl.exe -d "script=\$(cat ./script/changepassword.groovy)" http://localhost:8080/scriptText/
               """
           }
