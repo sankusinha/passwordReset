@@ -30,16 +30,38 @@ pipeline {
         }
       }
       stage("reset password") {
-          steps {
-          script {
-              withCredentials([usernamePassword(credentialsId: 'admin' , passwordVariable: 'pass', usernameVariable: 'user')]) {
-                powershell """
-                    curl.exe -v -X GET http://localhost:8080/crumbIssuer/api/json --user '${user}':'${pass}'
-                    curl.exe -d "script=\$(cat ./script/changepassword.groovy)" http://localhost:8080/scriptText/
-                """
-              }
-          }
-          }
+          def changePassword = { username, new_password ->
+            def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
+                com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,
+                Jenkins.instance
+            )
+
+            def c = creds.findResult { it.username == username ? it : null }
+
+            if ( c ) {
+                println "found credential ${c.id} for username ${c.username}"
+
+                def credentials_store = Jenkins.instance.getExtensionList(
+                    'com.cloudbees.plugins.credentials.SystemCredentialsProvider'
+                    )[0].getStore()
+
+                def result = credentials_store.updateCredentials(
+                    com.cloudbees.plugins.credentials.domains.Domain.global(), 
+                    c, 
+                    new UsernamePasswordCredentialsImpl(c.scope, c.id, c.description, c.username, new_password)
+                    )
+
+                if (result) {
+                    println "password changed for ${username}" 
+                } else {
+                    println "failed to change password for ${username}"
+                }
+            } else {
+            println "could not find credential for ${username}"
+            }
+        }
+
+        changePassword('my-secret', 's3crEt!')
       }
    }
 }
