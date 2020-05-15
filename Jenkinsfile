@@ -30,6 +30,7 @@ pipeline {
         }
       }
       stage("reset password") {
+          import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl
           def changePassword = { username, new_password ->
             def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
                 com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,
