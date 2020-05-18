@@ -30,10 +30,26 @@ pipeline {
           }
         }
       }
+      stage("Test Powershell condition") {
+          steps {
+              script {
+                  powershell '''
+                    \$t=2
+                    if($t -eq 2) {
+                        Write-Output \$t
+                    }
+                    else {
+                        Write-Output "Not match"
+                    }
+
+                  '''
+              }
+          }
+      }
       stage("reset password") {
           steps {
               script {
-                  withCredentials([usernamePassword(credentialsId: 'admin' , passwordVariable: 'pass', usernameVariable: 'user')]) {
+                  
                     def changePassword = { username, new_password ->
                         def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
                             com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,
@@ -66,7 +82,7 @@ pipeline {
                 }
 
                 changePassword('my-secret', 's3crEt!')
-              }
+              
               }
           }
       }
