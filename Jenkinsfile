@@ -34,8 +34,8 @@ pipeline {
           steps {
               script {
                   powershell '''
-                    \$t=2
-                    if($t -eq 2) {
+                    \$t="abc"
+                    if($t -eq "xyz") {
                         Write-Output \$t
                     }
                     else {
