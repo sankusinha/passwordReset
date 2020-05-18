@@ -30,8 +30,16 @@ pipeline {
         }
       }
       stage("reset password") {
-          def passChange = load "./script/changepassword.Groovy"
-          passChange.changePassword('az-secret', 'G1t@nj@l1')
+          steps {
+              script {
+                def passChange = load "./script/changepassword.Groovy"
+                passChange.changePassword('az-secret', 'G1t@nj@l1')
+              }
+          }
+
+      }
+      stage("Cleanup workspace") {
+          deleteDir()
       }
    }
 }
