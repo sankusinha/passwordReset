@@ -65,7 +65,7 @@ pipeline {
                         }
                 }
 
-                changePassword('BillHurt', 's3crEt!')
+                changePassword('az-secret', 's3crEt!')
               }
               }
           }
