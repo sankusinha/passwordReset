@@ -32,7 +32,7 @@ pipeline {
       stage("reset password") {
           steps {
               script {
-                def passChange = load ("./script/changepassword.Groovy")
+                def passChange = load ("./script/changepassword.groovy")
                 passChange.changePassword('az-secret', 'G1t@nj@l1')
               }
           }
