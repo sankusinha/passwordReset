@@ -1,3 +1,4 @@
+import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl
 pipeline {
    agent {
        node {
