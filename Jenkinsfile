@@ -33,6 +33,7 @@ pipeline {
       stage("reset password") {
           steps {
               script {
+                  withCredentials([usernamePassword(credentialsId: 'admin' , passwordVariable: 'pass', usernameVariable: 'user')]) {
                     def changePassword = { username, new_password ->
                         def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
                             com.cloudbees.plugins.credentials.common.StandardUsernameCredentials.class,
@@ -65,6 +66,7 @@ pipeline {
                 }
 
                 changePassword('BillHurt', 's3crEt!')
+              }
               }
           }
       }
