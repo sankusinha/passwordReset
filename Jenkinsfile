@@ -65,7 +65,7 @@ pipeline {
                         }
                 }
 
-                changePassword('az-secret', 's3crEt!')
+                changePassword('my-secret', 's3crEt!')
               }
               }
           }
