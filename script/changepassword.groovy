@@ -1,4 +1,4 @@
-import com.cloudbees.plugins.credentials.impl.UsernamePasswordCredentialsImpl
+
 
 def changePassword = { username, new_password ->
     def creds = com.cloudbees.plugins.credentials.CredentialsProvider.lookupCredentials(
