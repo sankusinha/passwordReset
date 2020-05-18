@@ -30,5 +30,4 @@ def changePassword = { username, new_password ->
       println "could not find credential for ${username}"
     }
 }
-
-changePassword('my-secret', 's3crEt!')
+return this
