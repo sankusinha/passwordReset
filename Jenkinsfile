@@ -38,8 +38,11 @@ pipeline {
           }
 
       }
-      stage("Cleanup workspace") {
-          deleteDir()
-      }
+   }
+   post {
+       always {
+           echo "Cleaning Workspace"
+           deleteDir()
+       }
    }
 }
