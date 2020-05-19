@@ -8,7 +8,7 @@ pipeline {
    }
    parameters {
        string(name: "service_principal", defaultValue:"ServicePrincipalName", description:"Display name of the Service Principal")
-       booleanParam(name: 'RESET_ADUSER', defaultValue: false, description: "Tochange the ADUSER Password")
+       booleanParam(name: "RESET_ADUSER", defaultValue: false, description: "Tochange the ADUSER Password")
    }
 
    environment {
