@@ -58,6 +58,7 @@ pipeline {
                         Write-Output "false"
                     }
                     else {
+                        Install-Module AzureAD -Force -Confirm:\$false
                         Connect-AzureAD -Confirm
                         add-type -AssemblyName System.Web
                         \$secret=[System.Web.Security.Membership]::GeneratePassword(20,5)
