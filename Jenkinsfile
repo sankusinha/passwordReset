@@ -61,7 +61,6 @@ pipeline {
                         \$CurrentValue = [Environment]::GetEnvironmentVariable("PSModulePath", "Machine")
                         \$UserPSModuleLocation = "C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\Modules"
                         \$env:PSModulePath = \$UserPSModuleLocation + ";" + \$CurrentValue
-                        Install-Module AzureAD -Force -Confirm:\$false
                         Import-Module AzureAD
                         add-type -AssemblyName System.Web
                         \$secret=[System.Web.Security.Membership]::GeneratePassword(20,5)
