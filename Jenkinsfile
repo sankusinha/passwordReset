@@ -9,7 +9,7 @@ pipeline {
    parameters {
        string(name: "service_principal", defaultValue:"ServicePrincipalName", description:"Display name of the Service Principal")
        booleanParam(name: "RESET_ADUSER", defaultValue: false, description: "Tochange the ADUSER Password")
-       //choice choices: ['yes','no'], "Need to change AD user password?"
+       //choice choices: ['yes','no'], description: "Need to change AD user password?", name: 'RESET_ADUSER'
    }
 
    environment {
@@ -53,11 +53,15 @@ pipeline {
           steps {
               script {
                   powershell """
+                    \$oldPassword = "Sanku#1Nupur"
                     if ("${env:CH_ADUSER}" -eq "false") {
                         Write-Output "false"
                     }
                     else {
-                        Write-Output "If condition not checked"
+                        add-type -AssemblyName System.Web
+                        \$secret=[System.Web.Security.Membership]::GeneratePassword(20,5)
+                        Write-Output \$secret
+                        Update-AzureADSignedInUserPassword -CurrentPassword \$oldPassword -NewPassword \$secret
                     }
                   """
               }
