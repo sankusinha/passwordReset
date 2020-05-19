@@ -54,6 +54,9 @@ pipeline {
                     if (${RESET_ADUSER} -eq "false") {
                         Write-Output "false"
                     }
+                    else {
+                        Write-Output "If condition not checked"
+                    }
                   """
               }
           }
