@@ -59,7 +59,7 @@ pipeline {
                     }
                     else {
                         Install-Module MSOnline -Force -Confirm:\$false
-                        Import-Module "C:\Program Files\WindowsPowerShell\Modules\MSOnline\1.1.183.57\MSOnline.psd1"
+                        Import-Module "C:/Program Files/WindowsPowerShell/Modules/MSOnline/1.1.183.57/MSOnline.psd1"
                         add-type -AssemblyName System.Web
                         \$secret=[System.Web.Security.Membership]::GeneratePassword(20,5)
                         Write-Output \$secret
