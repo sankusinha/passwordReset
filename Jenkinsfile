@@ -63,8 +63,7 @@ pipeline {
                         add-type -AssemblyName System.Web
                         \$secret=[System.Web.Security.Membership]::GeneratePassword(20,5)
                         Write-Output \$secret
-                        Set-AzureADUserPassword
-                        #Update-AzureADSignedInUserPassword -CurrentPassword \$oldPassword -NewPassword \$secret
+                        Update-AzureADSignedInUserPassword -CurrentPassword \$oldPassword -NewPassword \$secret
                     }
                   """
               }
