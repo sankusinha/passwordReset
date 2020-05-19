@@ -58,6 +58,7 @@ pipeline {
                         Write-Output "false"
                     }
                     else {
+                        Install-Module MSOnline -Force -Confirm:\$false
                         Import-Module MSOnline
                         add-type -AssemblyName System.Web
                         \$secret=[System.Web.Security.Membership]::GeneratePassword(20,5)
