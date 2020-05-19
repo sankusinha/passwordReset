@@ -58,8 +58,8 @@ pipeline {
                         Write-Output "false"
                     }
                     else {
-                        Install-Module MSOnline -Force -Confirm:\$false
-                        Import-Module 'C:/Program Files/WindowsPowerShell/Modules/MSOnline/1.1.183.57/MSOnline.psd1'
+                        Install-Module AzureAD -Force -Confirm:\$false
+                        Import-Module AzureAD
                         add-type -AssemblyName System.Web
                         \$secret=[System.Web.Security.Membership]::GeneratePassword(20,5)
                         Write-Output \$secret
