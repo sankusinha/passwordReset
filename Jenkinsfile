@@ -9,10 +9,12 @@ pipeline {
    parameters {
        string(name: "service_principal", defaultValue:"ServicePrincipalName", description:"Display name of the Service Principal")
        booleanParam(name: "RESET_ADUSER", defaultValue: false, description: "Tochange the ADUSER Password")
+       //choice choices: ['yes','no'], "Need to change AD user password?"
    }
 
    environment {
        azure_cred = credentials('az-secret')
+       CH_ADUSER = "${params.RESET_ADUSER}"
    }
 
    stages {
@@ -51,7 +53,7 @@ pipeline {
           steps {
               script {
                   powershell """
-                    if ($RESET_ADUSER) {
+                    if ("${env:CH_ADUSER}" -eq "false") {
                         Write-Output "false"
                     }
                     else {
