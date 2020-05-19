@@ -50,11 +50,11 @@ pipeline {
       stage("reset password") {
           steps {
               script {
-                  powershell '''
-                    if ("${RESET_ADUSER}" -eq "false") {
+                  powershell """
+                    if (${RESET_ADUSER} -eq "false") {
                         Write-Output "false"
                     }
-                  '''
+                  """
               }
           }
       }
