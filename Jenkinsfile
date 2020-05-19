@@ -59,7 +59,7 @@ pipeline {
                     }
                     else {
                         \$CurrentValue = [Environment]::GetEnvironmentVariable("PSModulePath", "Machine")
-                        \$UserPSModuleLocation = "C:\Windows\SysWOW64\WindowsPowerShell\v1.0\Modules"
+                        \$UserPSModuleLocation = "C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\Modules"
                         \$env:PSModulePath = \$UserPSModuleLocation + ";" + \$CurrentValue
                         Install-Module AzureAD -Force -Confirm:\$false
                         Import-Module AzureAD
