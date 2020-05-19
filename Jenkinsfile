@@ -51,7 +51,7 @@ pipeline {
           steps {
               script {
                   powershell """
-                    if (${RESET_ADUSER} -eq "false") {
+                    if (${RESET_ADUSER} -eq false) {
                         Write-Output "false"
                     }
                     else {
