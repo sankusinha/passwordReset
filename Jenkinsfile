@@ -58,8 +58,7 @@ pipeline {
                         Write-Output "false"
                     }
                     else {
-                        \$Credential = Get-Credential
-                        Connect-AzureAD -Credential \$Credential
+                        Install-Module -Name AzureAD
                         add-type -AssemblyName System.Web
                         \$secret=[System.Web.Security.Membership]::GeneratePassword(20,5)
                         Write-Output \$secret
