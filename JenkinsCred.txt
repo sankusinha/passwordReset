@@ -1,0 +1,17 @@
+node {
+  stage('Jenkins Credentials | Decrypt Secret Text String') {
+      script{
+        withCredentials([string(credentialsId: 'my-secret-text',
+                                variable: 'secretText')]) {
+          apiKey = "\nAPI key: ${secretText}\n"
+        }
+        println apiKey
+        withCredentials([usernamePassword(credentialsId: 'my-secret',
+                                          passwordVariable: 'password',
+                                          usernameVariable: 'username')]) {
+          creds = "\nUsername: ${username}\nPassword: ${password}\n"
+        }
+        println creds
+      }
+  }
+}
